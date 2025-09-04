@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name" translatable="false">Bix Brother</string>
+    <string name="bix_widget_description">Display the live bike count at your favourite stations</string>
+    <string name="activity_main_cta">Search a station</string>
+    <string name="legal_note">Bix Brother IS NOT AFFILIATED WITH BIXI Montréal OR Lyft Urban Solutions. BIXI is a registered trademark.</string>
+    <string name="station_search_hint" translatable="false">Drummond / de Maisonneuve</string>
+    <string name="activity_configure_done">Confirm</string>
+    <string name="activity_configure_add_new">Add widget</string>
+    <string name="activity_configure_heading">Select one or more stations</string>
+    <string name="activity_configure_open_map">Open map</string>
+    <string name="activity_configure_copy_uuid">Copy station UUID</string>
+    <string name="widget_attribution">\ • Data from BIXI</string>
+    <string name="widget_bikes_regular">Regular bikes</string>
+    <string name="widget_bikes_electric">Electric bikes</string>
+    <string name="widget_docks_available">Available docks</string>
+    <string name="widget_button_unlock">Unlock</string>
+    <string name="widget_preview_station1" translatable="false">Drummond / de Maisonneuve</string>
+    <string name="widget_preview_station2" translatable="false">Ste-Catherine / Dézéry</string>
+    <string name="bix_widget_name">Station list</string>
+    <string name="osm_attribution">Thumbnails from OpenStreetMap</string>
+    <string name="drag_to_reorder">Drag to reorder</string>
+</resources>

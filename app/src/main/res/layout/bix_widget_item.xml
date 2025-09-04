@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="16dp"
+    tools:showIn="@layout/bix_widget"
+    tools:ignore="UseAppTint" >
+
+    <TextView
+        android:id="@+id/widget_item_station_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimaryContainer"
+        tools:text="@tools:sample/cities"
+        android:textFontWeight="500" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_bike"
+            android:contentDescription="@string/widget_bikes_regular"
+            android:tint="?attr/colorOnPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/widget_item_num_bikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_electric_bike"
+            android:contentDescription="@string/widget_bikes_electric"
+            android:tint="?attr/colorOnPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/widget_item_num_ebikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_bike_dock"
+            android:contentDescription="@string/widget_docks_available"
+            android:tint="?attr/colorOnPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/widget_item_num_docks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            tools:text="@tools:sample/us_zipcodes" />
+
+    </LinearLayout>
+
+</LinearLayout>

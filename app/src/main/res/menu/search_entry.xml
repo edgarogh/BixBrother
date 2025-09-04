@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_group_main">
+        <item
+            android:id="@+id/menu_item_open_map"
+            android:title="@string/activity_configure_open_map" />
+    </group>
+    <group android:id="@+id/menu_group_other">
+        <item
+            android:id="@+id/menu_item_copy"
+            android:title="@string/activity_configure_copy_uuid" />
+    </group>
+</menu>

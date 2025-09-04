@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:background="?attr/colorOnSecondary"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+    tools:ignore="UseAppTint,HardcodedText" >
+
+    <!-- <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:src="@drawable/bixi_logo"
+        android:importantForAccessibility="no"
+        android:tint="@color/material_dynamic_primary70" /> -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:importantForAccessibility="no" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="-3dp"
+            android:src="@drawable/ic_eye"
+            android:importantForAccessibility="no"
+            android:tint="@color/widget_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/widget_attribution" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                android:text="@string/widget_preview_station1"
+                android:textFontWeight="500" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bike"
+                    android:contentDescription="@string/widget_bikes_regular"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:id="@+id/widget_item_num_bikes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="8" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_electric_bike"
+                    android:contentDescription="@string/widget_bikes_electric"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:id="@+id/widget_item_num_ebikes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="0" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bike_dock"
+                    android:contentDescription="@string/widget_docks_available"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:id="@+id/widget_item_num_docks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".7"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="16" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/widget_item_station_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                android:text="@string/widget_preview_station2"
+                android:textFontWeight="500" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bike"
+                    android:contentDescription="@string/widget_bikes_regular"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="31" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_electric_bike"
+                    android:contentDescription="@string/widget_bikes_electric"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="3" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bike_dock"
+                    android:contentDescription="@string/widget_docks_available"
+                    android:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".7"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:text="24" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/widget_unlock_button"
+        style="Theme.BixBrother.Widget.CtaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/widget_button_shape"
+        android:drawableStart="@drawable/ic_qr_code_20dp"
+        android:drawablePadding="8dp"
+        android:drawableTint="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:lineHeight="20dp"
+        android:paddingHorizontal="12dp"
+        android:text="@string/widget_button_unlock"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnPrimary"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151245224615",
+    "project_id": "bix-brother",
+    "storage_bucket": "bix-brother.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151245224615:android:2f5ce217abb797b372b982",
+        "android_client_info": {
+          "package_name": "bzh.edgar.bixbrother"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF_XhTVEfZ6Kk_jKM97b25V5zROdHX9cA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

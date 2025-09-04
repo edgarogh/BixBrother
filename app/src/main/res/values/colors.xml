@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="map_thumbnail_fallback">#FFD9D0C9</color>
+    <color name="vibrant_title">?attr/colorOnSurface</color>
+    <color name="widget_icon">?attr/colorOnSurfaceInverse</color>
+</resources>

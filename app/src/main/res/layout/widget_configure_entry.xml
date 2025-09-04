@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingVertical="4dp"
+    tools:showIn="@layout/widget_configure_activity">
+
+    <TextView
+        android:id="@+id/active_entry_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/active_entry_handle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/cities" />
+
+    <LinearLayout
+        android:id="@+id/active_entry_handle"
+        android:orientation="horizontal"
+        android:layout_width="64dp"
+        android:layout_height="match_parent"
+        android:gravity="center|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_handle"
+            android:contentDescription="@string/drag_to_reorder"
+            app:tint="?attr/colorSurfaceInverse" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

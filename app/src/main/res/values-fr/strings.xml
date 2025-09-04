@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_configure_done">Valider</string>
+    <string name="activity_configure_add_new">Ajouter le widget</string>
+    <string name="activity_configure_heading">Sélectionner une ou plusieurs stations</string>
+    <string name="bix_widget_description">Afficher le nombre de vélos à vos stations préférées</string>
+    <string name="widget_docks_available">Points d\'ancrage disponibles</string>
+    <string name="widget_button_unlock">Déverrouiller</string>
+    <string name="bix_widget_name">Liste de stations</string>
+    <string name="osm_attribution">Miniatures fournies par OpenStreetMap</string>
+    <string name="drag_to_reorder">Glisser pour réarranger</string>
+    <string name="activity_main_cta">Rechercher une station</string>
+    <string name="legal_note">Bix Brother N\'EST PAS AFFILIÉ À BIXI Montréal OU À Lyft Urban Solutions. BIXI est une marque déposée.</string>
+    <string name="activity_configure_open_map">Ouvrir la carte</string>
+    <string name="activity_configure_copy_uuid">Copier le UUID</string>
+    <string name="widget_attribution">\ • Données BIXI</string>
+    <string name="widget_bikes_regular">Vélos réguliers</string>
+    <string name="widget_bikes_electric">Vélos électriques</string>
+</resources>

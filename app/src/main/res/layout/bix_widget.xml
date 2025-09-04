@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:background="?attr/colorOnSecondary"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/bixi_logo"
+            android:importantForAccessibility="no"
+            android:tint="@color/material_dynamic_primary70" /> -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="-3dp"
+            android:src="@drawable/ic_eye"
+            android:importantForAccessibility="no"
+            android:tint="@color/widget_icon"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/widget_attribution" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/widget_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="40dp"
+                tools:listitem="@layout/bix_widget_item"
+                android:divider="@android:color/transparent"
+                android:clipToPadding="false" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/widget_unlock_button"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/widget_button_shape"
+            android:drawableStart="@drawable/ic_qr_code_20dp"
+            android:drawablePadding="8dp"
+            android:drawableTint="?attr/colorOnPrimary"
+            android:fontFamily="sans-serif"
+            android:lineHeight="20dp"
+            android:paddingHorizontal="12dp"
+            android:text="@string/widget_button_unlock"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorOnPrimary"
+            android:textFontWeight="500"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
