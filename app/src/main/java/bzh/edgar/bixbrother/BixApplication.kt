@@ -18,7 +18,7 @@ class BixApplication : Application() {
         Room.databaseBuilder(
             applicationContext,
             BixDatabase::class.java, "bix-database"
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
 
     override fun onCreate() {

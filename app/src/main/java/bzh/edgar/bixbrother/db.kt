@@ -4,12 +4,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Entity
+import androidx.room.Fts4
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
 import androidx.room.Upsert
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.UUID
 
 @Entity(tableName = "stations")
@@ -24,6 +27,12 @@ data class Station(
     @ColumnInfo(name = "num_docks_available") val numDocksAvailable: Int,
     @ColumnInfo(name = "capacity") val capacity: Int,
     @ColumnInfo(name = "updated_at") val updatedAt: Long,
+)
+
+@Fts4(contentEntity = Station::class)
+@Entity(tableName = "stations_fts")
+data class StationFts(
+    val name: String,
 )
 
 @Entity(tableName = "widget_station")
@@ -43,8 +52,8 @@ interface BixDao {
     @Query("update stations set num_bikes_available = :bikes, num_ebikes_available = :ebikes, num_docks_available = :docks where external_id = :stationId and updated_at < :updatedAt")
     fun updateStationStatus(stationId: UUID, bikes: Int, ebikes: Int, docks: Int, updatedAt: Long)
 
-    @Query("select * from stations where name like :searchTerms limit :limit")
-    suspend fun stationsByName(searchTerms: String, limit: Int = 20): List<Station>
+    @Query("select * from stations where rowid in (select rowid from stations_fts where stations_fts match :searchTerms) or name like :likeQuery limit :limit")
+    suspend fun stationsByName(searchTerms: String, likeQuery: String, limit: Int = 20): List<Station>
 
     @Query("select * from stations where external_id = :stationId")
     suspend fun stationByUuid(stationId: UUID): Station?
@@ -91,7 +100,19 @@ interface BixDao {
     fun getStationWidgetsSync(stationId: UUID): List<Int>
 }
 
-@Database(entities = [Station::class, WidgetStation::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Station::class, StationFts::class, WidgetStation::class],
+    version = 2,
+    exportSchema = false,
+)
 abstract class BixDatabase : RoomDatabase() {
     abstract fun dao(): BixDao
+}
+
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            "CREATE VIRTUAL TABLE IF NOT EXISTS `stations_fts` USING FTS4(`name`, content=`stations`)"
+        )
+    }
 }

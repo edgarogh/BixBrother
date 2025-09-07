@@ -91,8 +91,8 @@ class BixWidgetConfigureActivity : ComponentActivity(), ActiveEntryCallback.Call
                         val uuid = UUID.fromString(text)
                         listOfNotNull(dao.stationByUuid(uuid))
                     } catch (_: IllegalArgumentException) {
-                        val searchTerms = text.replace(Regex("[%_]"), "")
-                        dao.stationsByName("%$searchTerms%")
+                        val likeQuery = text.replace(Regex("[%_]"), "")
+                        dao.stationsByName(text, "%$likeQuery%")
                     }
 
                     runOnUiThread {
