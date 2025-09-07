@@ -14,9 +14,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-private val OPEN_BIXI_INTENT = Intent(Intent.ACTION_VIEW).apply {
-    data = "bikesharemontreal://".toUri()
-}
+private const val BIXI_PACKAGE_ID = "com.eightd.biximobile"
 
 class BixWidget : AppWidgetProvider() {
     companion object {
@@ -50,7 +48,9 @@ class BixWidget : AppWidgetProvider() {
                 PendingIntent.getActivity(
                     context,
                     Random.Default.nextInt(),
-                    OPEN_BIXI_INTENT,
+                    Intent(context, BixWidgetTrampolineActivity::class.java).apply {
+                        putExtra(BixWidgetTrampolineActivity.EXTRA_TARGET_PACKAGE, BIXI_PACKAGE_ID)
+                    },
                     PendingIntent.FLAG_IMMUTABLE,
                 ),
             )

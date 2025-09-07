@@ -49,6 +49,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".BixWidgetTrampolineActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:taskAffinity=""
+            android:excludeFromRecents="true" />
+
         <receiver
             android:name=".BixWidget"
             android:exported="true"
