@@ -14,9 +14,9 @@
         android:id="@+id/widget_item_station_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textColor="@color/widget_item_title"
         tools:text="@tools:sample/cities"
-        android:textFontWeight="500" />
+        android:textFontWeight="700" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -29,14 +29,14 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_bike"
             android:contentDescription="@string/widget_bikes_regular"
-            android:tint="?attr/colorOnPrimaryContainer" />
+            android:tint="@color/widget_item_numbers" />
 
         <TextView
             android:id="@+id/widget_item_num_bikes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="@color/widget_item_numbers"
             tools:text="@tools:sample/us_zipcodes" />
 
         <ImageView
@@ -44,14 +44,14 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_electric_bike"
             android:contentDescription="@string/widget_bikes_electric"
-            android:tint="?attr/colorOnPrimaryContainer" />
+            android:tint="@color/widget_item_numbers" />
 
         <TextView
             android:id="@+id/widget_item_num_ebikes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="@color/widget_item_numbers"
             tools:text="@tools:sample/us_zipcodes" />
 
         <ImageView
@@ -59,14 +59,14 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_bike_dock"
             android:contentDescription="@string/widget_docks_available"
-            android:tint="?attr/colorOnPrimaryContainer" />
+            android:tint="@color/widget_item_numbers" />
 
         <TextView
             android:id="@+id/widget_item_num_docks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".7"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="@color/widget_item_numbers"
             tools:text="@tools:sample/us_zipcodes" />
 
     </LinearLayout>

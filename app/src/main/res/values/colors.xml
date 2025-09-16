@@ -2,5 +2,10 @@
 <resources>
     <color name="map_thumbnail_fallback">#FFD9D0C9</color>
     <color name="vibrant_title">?attr/colorOnSurface</color>
-    <color name="widget_icon">?attr/colorOnSurfaceInverse</color>
+
+    <color name="widget_background">#DFF4FF</color>
+    <color name="widget_logo">#9C4238</color>
+    <color name="widget_logo_text">#2E150C</color>
+    <color name="widget_item_title">@color/widget_logo_text</color>
+    <color name="widget_item_numbers">@color/widget_logo_text</color>
 </resources>

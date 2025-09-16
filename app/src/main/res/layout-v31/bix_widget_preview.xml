@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp"
-    android:background="?attr/colorOnSecondary"
+    android:background="@color/widget_background"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight"
     tools:ignore="UseAppTint,HardcodedText" >
 
@@ -29,12 +29,16 @@
             android:layout_marginEnd="-3dp"
             android:src="@drawable/ic_eye"
             android:importantForAccessibility="no"
-            android:tint="@color/widget_icon" />
+            android:tint="@color/widget_logo" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/widget_attribution" />
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="@string/widget_attribution"
+            android:textColor="@color/widget_logo_text"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -55,9 +59,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnPrimaryContainer"
+                android:textColor="@color/widget_item_title"
                 android:text="@string/widget_preview_station1"
-                android:textFontWeight="500" />
+                android:textFontWeight="700" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -70,14 +74,14 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_bike"
                     android:contentDescription="@string/widget_bikes_regular"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:id="@+id/widget_item_num_bikes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="@color/widget_item_numbers"
                     android:text="8" />
 
                 <ImageView
@@ -85,14 +89,14 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_electric_bike"
                     android:contentDescription="@string/widget_bikes_electric"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:id="@+id/widget_item_num_ebikes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="@color/widget_item_numbers"
                     android:text="0" />
 
                 <ImageView
@@ -100,14 +104,14 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_bike_dock"
                     android:contentDescription="@string/widget_docks_available"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:id="@+id/widget_item_num_docks"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".7"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="@color/widget_item_numbers"
                     android:text="16" />
 
             </LinearLayout>
@@ -125,9 +129,9 @@
                 android:id="@+id/widget_item_station_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnPrimaryContainer"
+                android:textColor="@color/widget_item_title"
                 android:text="@string/widget_preview_station2"
-                android:textFontWeight="500" />
+                android:textFontWeight="700" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -140,13 +144,13 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_bike"
                     android:contentDescription="@string/widget_bikes_regular"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="@color/widget_item_numbers"
                     android:text="31" />
 
                 <ImageView
@@ -154,7 +158,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_electric_bike"
                     android:contentDescription="@string/widget_bikes_electric"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -168,13 +172,13 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_bike_dock"
                     android:contentDescription="@string/widget_docks_available"
-                    android:tint="?attr/colorOnPrimaryContainer" />
+                    android:tint="@color/widget_item_numbers" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".7"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="@color/widget_item_numbers"
                     android:text="24" />
 
             </LinearLayout>

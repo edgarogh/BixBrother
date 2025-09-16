@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp"
-    android:background="?attr/colorOnSecondary"
+    android:background="@color/widget_background"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <LinearLayout
@@ -29,13 +29,17 @@
             android:layout_marginEnd="-3dp"
             android:src="@drawable/ic_eye"
             android:importantForAccessibility="no"
-            android:tint="@color/widget_icon"
+            android:tint="@color/widget_logo"
             tools:ignore="UseAppTint" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/widget_attribution" />
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="@string/widget_attribution"
+            android:textColor="@color/widget_logo_text"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
