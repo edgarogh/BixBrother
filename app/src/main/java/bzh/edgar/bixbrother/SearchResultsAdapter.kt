@@ -9,15 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil3.dispose
 import coil3.load
-import coil3.request.Disposable
 import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import androidx.core.net.toUri
-import androidx.recyclerview.widget.DiffUtil
 
 private const val ITEM_VIEW_TYPE_HEADER = 0
 private const val ITEM_VIEW_TYPE_RESULT = 1
@@ -91,7 +91,6 @@ class SearchResultsAdapter(private val activity: ComponentActivity) : RecyclerVi
         val nameView = itemView.findViewById<TextView>(R.id.search_result_name)!!
 
         var thumbnailJob: Job? = null
-        var thumbnailDispose: Disposable? = null
 
         val currentStation get() = items[adapterPosition - 1]
 
@@ -123,13 +122,13 @@ class SearchResultsAdapter(private val activity: ComponentActivity) : RecyclerVi
 
             thumbnailJob = activity.lifecycleScope.launch {
                 val thumbUrl = itemView.context.bixApp.apiClient.getStationThumbnail(station.externalId)
-                thumbnailDispose = thumbnailView.load(thumbUrl)
+                thumbnailView.load(thumbUrl)
             }
         }
 
         override fun unbind() {
             thumbnailJob?.cancel()
-            thumbnailDispose?.dispose()
+            thumbnailView.dispose()
             thumbnailView.setImageDrawable(null)
         }
     }
