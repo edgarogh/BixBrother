@@ -12,6 +12,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 
+const val EXTRA_INITIAL_CACHED_STATIONS = "bzh.edgar.bixbrother.intent.extra.INITIAL_CACHED_STATIONS"
+const val EXTRA_TARGET_PACKAGE = "bzh.edgar.bixbrother.intent.extra.EXTRA_TARGET_PACKAGE"
+
 val Context.bixApp get() = this.applicationContext as BixApplication
 
 class BixApplication : Application(), SingletonImageLoader.Factory {

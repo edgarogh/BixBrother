@@ -3,7 +3,8 @@ package bzh.edgar.bixbrother
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.widget.RemoteViews
+import android.os.Build
+import android.util.Log
 import android.widget.RemoteViewsService
 
 class BixWidgetService : RemoteViewsService() {
@@ -11,20 +12,19 @@ class BixWidgetService : RemoteViewsService() {
 
     class RemoteViewsFactory(intent: Intent, val context: Context) : RemoteViewsService.RemoteViewsFactory {
         val widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        private var stations = listOf<Station>()
+        private var stations: List<StationEntry> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableArrayListExtra(EXTRA_INITIAL_CACHED_STATIONS, StationEntry::class.java)?.apply {
+                Log.e("BixWidgetService", "${this.size} stations")
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableArrayListExtra(EXTRA_INITIAL_CACHED_STATIONS)
+        } ?: listOf()
 
         override fun getCount() = stations.size
         override fun getItemId(index: Int) = (index + 1).toLong()
         override fun getLoadingView() = null
-
-        override fun getViewAt(index: Int) = RemoteViews(context.packageName, R.layout.bix_widget_item).apply {
-            val station = stations[index]
-            setTextViewText(R.id.widget_item_station_name, station.name)
-            setTextViewText(R.id.widget_item_num_bikes, (station.numBikesAvailable - station.numEbikesAvailable).toString())
-            setTextViewText(R.id.widget_item_num_ebikes, station.numEbikesAvailable.toString())
-            setTextViewText(R.id.widget_item_num_docks, station.numDocksAvailable.toString())
-        }
-
+        override fun getViewAt(index: Int) = BixWidgetLayout.inflateItem(context, stations[index])
         override fun getViewTypeCount() = 1
         override fun hasStableIds() = true
 
@@ -32,7 +32,7 @@ class BixWidgetService : RemoteViewsService() {
         }
 
         override fun onDataSetChanged() {
-            stations = context.bixApp.db.dao().getWidgetStationsSync(widgetId)
+            stations = context.bixApp.db.dao().getWidgetStationsSync(widgetId).map(::StationEntry)
         }
 
         override fun onDestroy() {

@@ -2,8 +2,6 @@ package bzh.edgar.bixbrother
 
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
-import android.content.ComponentName
-import android.content.Intent
 import com.google.firebase.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -30,13 +28,9 @@ class BixFirebaseMessagingService : FirebaseMessagingService() {
                 Firebase.messaging.unsubscribeFromTopic("v1status_$stationId")
             } else {
                 dao.updateStationStatus(stationId, numBikes, numEbikes, numDocks, updatedAt)
-
-                val intent = Intent(bixApp, BixWidget::class.java)
-                intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-                val ids = AppWidgetManager.getInstance(bixApp).getAppWidgetIds(ComponentName(bixApp, BixWidget::class.java))
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-                sendBroadcast(intent)
             }
+
+            AppWidgetManager.getInstance(bixApp).notifyAppWidgetViewDataChanged(widgets.toIntArray(), R.id.widget_list)
         }
     }
 }

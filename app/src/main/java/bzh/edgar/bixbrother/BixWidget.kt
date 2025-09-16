@@ -1,20 +1,13 @@
 package bzh.edgar.bixbrother
 
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.widget.RemoteViews
-import androidx.core.net.toUri
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlin.random.Random
-
-private const val BIXI_PACKAGE_ID = "com.eightd.biximobile"
 
 class BixWidget : AppWidgetProvider() {
     companion object {
@@ -33,29 +26,9 @@ class BixWidget : AppWidgetProvider() {
     }
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list)
         appWidgetIds.forEach { appWidgetId ->
-            val intent = Intent(context, BixWidgetService::class.java).apply {
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                data = toUri(Intent.URI_INTENT_SCHEME).toUri()
-            }
-
-            val views = RemoteViews(context.packageName, R.layout.bix_widget).apply {
-                setRemoteAdapter(R.id.widget_list, intent)
-            }
-
-            views.setOnClickPendingIntent(
-                R.id.widget_unlock_button,
-                PendingIntent.getActivity(
-                    context,
-                    Random.Default.nextInt(),
-                    Intent(context, BixWidgetTrampolineActivity::class.java).apply {
-                        putExtra(BixWidgetTrampolineActivity.EXTRA_TARGET_PACKAGE, BIXI_PACKAGE_ID)
-                    },
-                    PendingIntent.FLAG_IMMUTABLE,
-                ),
-            )
-
-            appWidgetManager.updateAppWidget(appWidgetId, views)
+            updateWidget(context, appWidgetId, appWidgetManager)
         }
     }
 
@@ -78,9 +51,17 @@ class BixWidget : AppWidgetProvider() {
             dao.persistWidget(appWidgetId)
             val intent = Intent(context, BixWidget::class.java)
             intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-            val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, BixWidget::class.java))
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(appWidgetId))
             context.sendBroadcast(intent)
         }.invokeOnCompletion { pendingResult.finish() }
+    }
+
+    private fun updateWidget(
+        context: Context,
+        appWidgetId: Int,
+        appWidgetManager: AppWidgetManager = AppWidgetManager.getInstance(context),
+    ) {
+        val views = BixWidgetLayout.inflateWidget(context, appWidgetId)
+        appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 }

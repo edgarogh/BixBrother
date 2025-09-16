@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.RemoteViews
@@ -160,13 +161,14 @@ class BixWidgetConfigureActivity : ComponentActivity(), ActiveEntryCallback.Call
             val (deleted, added) = dao.updateWidget(appWidgetId, activeEntryAdapter.items.map { it.externalId })
 
             val tasks = mutableListOf<Deferred<Void>>()
-            for (d in deleted) {
-                tasks += Firebase.messaging.unsubscribeFromTopic("v1status_${d.externalId}").asDeferred()
-                Log.d("BixWidgetConfigureActivity", "Unsubscribing from ${d.externalId}")
-            }
+
             for (a in added) {
                 tasks += Firebase.messaging.subscribeToTopic("v1status_${a.externalId}").asDeferred()
                 Log.d("BixWidgetConfigureActivity", "Subscribing to ${a.externalId}")
+            }
+            for (d in deleted) {
+                tasks += Firebase.messaging.unsubscribeFromTopic("v1status_${d.externalId}").asDeferred()
+                Log.d("BixWidgetConfigureActivity", "Unsubscribing from ${d.externalId}")
             }
 
             tasks.awaitAll()
@@ -174,8 +176,7 @@ class BixWidgetConfigureActivity : ComponentActivity(), ActiveEntryCallback.Call
             if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
                 val intent = Intent(bixApp, BixWidget::class.java)
                 intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-                val ids = AppWidgetManager.getInstance(bixApp).getAppWidgetIds(ComponentName(bixApp, BixWidget::class.java))
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(appWidgetId))
                 sendBroadcast(intent)
                 setResult(RESULT_OK, resultValue)
             } else {
@@ -200,10 +201,23 @@ class BixWidgetConfigureActivity : ComponentActivity(), ActiveEntryCallback.Call
             packageName,
             R.layout.bix_widget
         ).apply {
-            setRemoteAdapter(R.id.widget_list, Intent(bixApp, BixWidgetService::class.java).apply {
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-                data = toUri(Intent.URI_INTENT_SCHEME).toUri()
-            })
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val remoteCollectionBuilder = RemoteViews.RemoteCollectionItems.Builder()
+                    .setHasStableIds(true)
+                    .setViewTypeCount(1)
+
+                for ((idx, entry) in activeEntryAdapter.items.withIndex()) {
+                    remoteCollectionBuilder.addItem(idx.toLong(), BixWidgetLayout.inflateItem(this@BixWidgetConfigureActivity, StationEntry(entry)))
+                }
+
+                setRemoteAdapter(R.id.widget_list, remoteCollectionBuilder.build())
+            } else {
+                setRemoteAdapter(R.id.widget_list, Intent(bixApp, BixWidgetService::class.java).apply {
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+                    putParcelableArrayListExtra(EXTRA_INITIAL_CACHED_STATIONS, ArrayList(activeEntryAdapter.items.map(::StationEntry)))
+                    data = toUri(Intent.URI_INTENT_SCHEME).toUri()
+                })
+            }
         })
 
         appWidgetManager.requestPinAppWidget(bixWidget, extras, successCallback)

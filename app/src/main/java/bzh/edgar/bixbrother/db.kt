@@ -1,5 +1,6 @@
 package bzh.edgar.bixbrother
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Database
@@ -13,6 +14,7 @@ import androidx.room.Transaction
 import androidx.room.Upsert
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.parcelize.Parcelize
 import java.util.UUID
 
 @Entity(tableName = "stations")
@@ -43,6 +45,25 @@ data class WidgetStation(
     val title: String?,
     val position: Int,
 )
+
+@Parcelize
+data class StationEntry(
+    val station: UUID,
+    val title: String? = null,
+    val numBikesAvailable: Int,
+    val numEbikesAvailable: Int,
+    val numDocksAvailable: Int,
+) : Parcelable {
+    constructor(station: Station) : this(
+        station.externalId,
+        station.name,
+        station.numBikesAvailable,
+        station.numEbikesAvailable,
+        station.numDocksAvailable,
+    )
+
+    val numRegularBikesAvailable get() = numBikesAvailable - numEbikesAvailable
+}
 
 @Dao
 interface BixDao {

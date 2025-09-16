@@ -12,10 +12,6 @@ import androidx.core.net.toUri
  * Activity whose only goal is to start an app, or the Google Play store if it's missing
  */
 class BixWidgetTrampolineActivity : Activity() {
-    companion object {
-        const val EXTRA_TARGET_PACKAGE = "bzh.edgar.bixbrother.intent.extra.EXTRA_TARGET_PACKAGE"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
